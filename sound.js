@@ -5,7 +5,7 @@ class SoundManager {
         this.ctx = null;
         this.bgMusic = null;
         // Sửa lại đường dẫn này trỏ tới file nhạc của bạn
-        this.defaultMusicUrl = 'D:\New folder (4)\assets\nguoi-gieo-mam-xanh.mp3';
+        this.defaultMusicUrl = './assets/nguoi-gieo-mam-xanh.mp3';
     }
 
     init() {

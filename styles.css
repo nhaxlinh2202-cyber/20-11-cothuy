@@ -161,3 +161,32 @@ body {
 #printableLetterCard p:first-of-type {
     text-indent: 0;
 }
+
+.bouquet-popup-card {
+    animation: bouquetPopUp 0.45s cubic-bezier(0.18, 0.89, 0.32, 1.15) forwards;
+}
+
+.bouquet-svg {
+    transform-origin: bottom center;
+    animation: bouquetSway 4s ease-in-out infinite;
+}
+
+@keyframes bouquetPopUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.82) translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes bouquetSway {
+    0%, 100% {
+        transform: rotate(-1.5deg);
+    }
+    50% {
+        transform: rotate(1.5deg);
+    }
+}

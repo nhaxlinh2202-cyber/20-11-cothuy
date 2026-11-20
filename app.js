@@ -114,10 +114,25 @@ function startTypewriterEffect() {
 
 function initReadFinishedSection() {
     const finishBtn = document.getElementById('finishReadingBtn');
+    const bouquetModal = document.getElementById('bouquetModal');
+    const receiveBtn = document.getElementById('receiveBouquetBtn');
     const replySection = document.getElementById('teacherReplySection');
 
-    if (finishBtn && replySection) {
+    if (finishBtn && bouquetModal) {
         finishBtn.addEventListener('click', () => {
+            if (window.soundManager && typeof window.soundManager.playPaperRustle === 'function') {
+                window.soundManager.playPaperRustle();
+            }
+            bouquetModal.classList.remove('hidden');
+            bouquetModal.classList.add('flex');
+        });
+    }
+
+    if (receiveBtn && bouquetModal && replySection) {
+        receiveBtn.addEventListener('click', () => {
+            bouquetModal.classList.add('hidden');
+            bouquetModal.classList.remove('flex');
+
             document.getElementById('readFinishSection')?.classList.add('hidden');
 
             replySection.classList.remove('hidden');

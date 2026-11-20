@@ -1,32 +1,3 @@
-/* app.js - Mở Thư, Phát Nhạc, Hiệu Ứng Typewriter, Lưu Ảnh & Gửi Email */
-
-let ytPlayer = null;
-let isYtReady = false;
-
-// Khởi tạo YouTube IFrame Player (phát ngầm bài hát Người Gieo Mầm Xanh)
-window.onYouTubeIframeAPIReady = function() {
-    try {
-        ytPlayer = new YT.Player('youtubePlayer', {
-            height: '200',
-            width: '200',
-            videoId: 'sj_UDyfoo-A', // "Người Gieo Mầm Xanh" - Hứa Kim Tuyền x Hoàng Dũng
-            playerVars: {
-                'playsinline': 1,
-                'autoplay': 0,
-                'controls': 0,
-                'rel': 0,
-                'loop': 1,
-                'playlist': 'sj_UDyfoo-A'
-            },
-            events: {
-                'onReady': () => { isYtReady = true; }
-            }
-        });
-    } catch (e) {
-        console.warn('YouTube API init fallback:', e);
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
     initEnvelopeExperience();
     initReadFinishedSection();
@@ -34,9 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSaveImage();
 });
 
-/* ==========================================================================
-   1. MỞ PHONG BÌ THƯ & TỰ ĐỘNG PHÁT BÀI HÁT "NGƯỜI GIEO MẦM XANH"
-   ========================================================================== */
 function initEnvelopeExperience() {
     const envelope = document.getElementById('mainInteractiveEnvelope');
     const tapGuideBtn = document.getElementById('tapGuideBtn');
@@ -46,23 +14,12 @@ function initEnvelopeExperience() {
     function openEnvelope() {
         if (!envelope || envelope.classList.contains('open')) return;
 
-        // Âm thanh lật giấy nhẹ
         if (window.soundManager && typeof window.soundManager.playPaperRustle === 'function') {
             window.soundManager.playPaperRustle();
         }
 
-        // Tự động phát bài hát Người Gieo Mầm Xanh
-        try {
-            if (ytPlayer && isYtReady && typeof ytPlayer.playVideo === 'function') {
-                ytPlayer.playVideo();
-            }
-        } catch (err) {
-            console.warn(err);
-        }
-
         envelope.classList.add('open');
 
-        // Chuyển mượt sang toàn bộ bức thư
         setTimeout(() => {
             envelopeScreen.classList.add('opacity-0');
             setTimeout(() => {
@@ -73,7 +30,6 @@ function initEnvelopeExperience() {
                 letterScreen.classList.add('flex');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                // Bắt đầu hiệu ứng typewriter sau khi thư hiện ra
                 startTypewriterEffect();
             }, 400);
         }, 750);
@@ -83,9 +39,6 @@ function initEnvelopeExperience() {
     if (tapGuideBtn) tapGuideBtn.addEventListener('click', openEnvelope);
 }
 
-/* ==========================================================================
-   2. HIỆU ỨNG CHỮ CHẠY DẦN DẦN (TYPEWRITER)
-   ========================================================================== */
 function startTypewriterEffect() {
     const letterBody = document.querySelector('#printableLetterCard .space-y-4');
     if (!letterBody) return;
@@ -95,30 +48,25 @@ function startTypewriterEffect() {
     const readFinishSection = document.getElementById('readFinishSection');
     const saveSection = document.getElementById('saveImageSection');
 
-    // Ẩn nút đọc xong và lưu ảnh cho đến khi gõ hết
     if (readFinishSection) readFinishSection.style.opacity = '0';
     if (saveSection) saveSection.style.opacity = '0';
     if (footer) footer.style.opacity = '0';
 
-    // Lưu nội dung gốc của từng đoạn văn
     const originalContents = [];
     paragraphs.forEach((p) => {
         originalContents.push(p.textContent);
         p.textContent = '';
-        p.style.minHeight = '1.85em'; // giữ chỗ cho dòng đầu tiên
+        p.style.minHeight = '1.85em';
     });
 
     let currentParagraph = 0;
     let currentChar = 0;
-    const charDelay = 28; // ms giữa mỗi ký tự
-    const paragraphPause = 300; // ms nghỉ giữa các đoạn
-
-    // Đếm ký tự để không gõ tiếng click liên tục mà chỉ gõ 1 trong vài ký tự
+    const charDelay = 28;
+    const paragraphPause = 300;
     let clickCounter = 0;
 
     function typeNextChar() {
         if (currentParagraph >= originalContents.length) {
-            // Đã gõ hết, hiện footer và các nút
             if (footer) {
                 footer.style.transition = 'opacity 0.5s ease';
                 footer.style.opacity = '1';
@@ -141,7 +89,6 @@ function startTypewriterEffect() {
             p.textContent += text[currentChar];
             currentChar++;
 
-            // Phát tiếng click mỗi 3 ký tự (không quá nhiều)
             clickCounter++;
             if (clickCounter % 3 === 0) {
                 if (window.soundManager && typeof window.soundManager.playTypeClick === 'function') {
@@ -149,7 +96,6 @@ function startTypewriterEffect() {
                 }
             }
 
-            // Auto-scroll theo chữ đang gõ
             const pRect = p.getBoundingClientRect();
             if (pRect.bottom > window.innerHeight - 60) {
                 window.scrollBy({ top: 30, behavior: 'smooth' });
@@ -157,34 +103,25 @@ function startTypewriterEffect() {
 
             setTimeout(typeNextChar, charDelay);
         } else {
-            // Hết đoạn, chuyển sang đoạn tiếp theo
             currentParagraph++;
             currentChar = 0;
             setTimeout(typeNextChar, paragraphPause);
         }
     }
 
-    // Bắt đầu gõ sau 400ms để trang render xong
     setTimeout(typeNextChar, 400);
 }
 
-/* ==========================================================================
-   3. NÚT "CÔ ĐÃ ĐỌC XONG THÌ BẤM VÀO ĐÂY"
-   ========================================================================== */
 function initReadFinishedSection() {
     const finishBtn = document.getElementById('finishReadingBtn');
     const replySection = document.getElementById('teacherReplySection');
 
     if (finishBtn && replySection) {
         finishBtn.addEventListener('click', () => {
-            // Ẩn nút đọc xong
             document.getElementById('readFinishSection')?.classList.add('hidden');
 
-            // Hiện khung bông hoa và lời nhắn nhủ
             replySection.classList.remove('hidden');
             replySection.classList.add('flex');
-
-            // Cuộn mượt xuống khu vực nhắn nhủ
             replySection.scrollIntoView({ behavior: 'smooth' });
 
             const textarea = document.getElementById('teacherMessageInput');
@@ -193,9 +130,6 @@ function initReadFinishedSection() {
     }
 }
 
-/* ==========================================================================
-   4. GỬI LỜI NHẮN VÀO EMAIL nhaxlinh2202@gmail.com
-   ========================================================================== */
 function initEmailSubmission() {
     const form = document.getElementById('teacherReplyForm');
     const textarea = document.getElementById('teacherMessageInput');
@@ -204,7 +138,7 @@ function initEmailSubmission() {
 
     if (form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Chặn form gửi mặc định
+            e.preventDefault();
 
             const message = textarea?.value.trim();
             if (!message) {
@@ -213,13 +147,11 @@ function initEmailSubmission() {
                 return;
             }
 
-            // Đổi trạng thái nút
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Đang gửi...';
             }
 
-            // Gửi bằng fetch API, chờ phản hồi xong mới hiện thông báo
             fetch('https://formsubmit.co/ajax/nhaxlinh2202@gmail.com', {
                 method: 'POST',
                 headers: {
@@ -235,29 +167,31 @@ function initEmailSubmission() {
             })
             .then(res => res.json())
             .then(data => {
-                // Gửi thành công
-                form.classList.add('hidden');
-                if (successNotice) {
-                    successNotice.classList.remove('hidden');
-                    successNotice.scrollIntoView({ behavior: 'smooth' });
+                if (data.success === 'true' || data.success === true) {
+                    form.classList.add('hidden');
+                    if (successNotice) {
+                        successNotice.classList.remove('hidden');
+                        successNotice.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    alert('Thông báo: ' + (data.message || 'Chưa thể gửi thư, vui lòng thử lại!'));
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Gửi cho con';
+                    }
                 }
             })
-            .catch(err => {
-                console.log('FormSubmit error:', err);
-                // Nếu lỗi mạng vẫn hiện thông báo để Cô không hoang mang
-                form.classList.add('hidden');
-                if (successNotice) {
-                    successNotice.classList.remove('hidden');
-                    successNotice.scrollIntoView({ behavior: 'smooth' });
+            .catch(() => {
+                alert('Lỗi kết nối mạng, Cô vui lòng thử bấm gửi lại nhé ạ!');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Gửi cho con';
                 }
             });
         });
     }
 }
 
-/* ==========================================================================
-   5. LƯU BỨC THƯ THÀNH ẢNH (PNG)
-   ========================================================================== */
 function initSaveImage() {
     const saveBtn = document.getElementById('saveImageBtn');
     if (!saveBtn) return;
@@ -270,7 +204,6 @@ function initSaveImage() {
         saveBtn.innerHTML = '<span>Đang tạo ảnh bức thư...</span>';
         saveBtn.disabled = true;
 
-        // Load html2canvas nếu chưa có
         if (typeof html2canvas === 'undefined') {
             const script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
@@ -290,7 +223,7 @@ function initSaveImage() {
 function captureAndDownload(element, btn, originalHTML) {
     html2canvas(element, {
         backgroundColor: '#fcfbf8',
-        scale: 2, // Xuất ảnh nét gấp đôi cho màn hình điện thoại
+        scale: 2,
         useCORS: true,
         logging: false
     }).then(canvas => {
@@ -306,8 +239,7 @@ function captureAndDownload(element, btn, originalHTML) {
             btn.innerHTML = originalHTML;
             btn.disabled = false;
         }, 2000);
-    }).catch(err => {
-        console.error('html2canvas error:', err);
+    }).catch(() => {
         alert('Trình duyệt hiện tại hạn chế tải tệp trực tiếp, Cô có thể chụp màn hình để lưu lại nhé ạ!');
         btn.innerHTML = originalHTML;
         btn.disabled = false;

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tri Ân 20/11 - Bức Thư Gửi Cô</title>
-    <meta name="description" content="Bức thư tri ân Ngày Nhà giáo Việt Nam 20/11 của cô học trò cũ gửi về Cô giáo dạy Văn ở Ninh Hòa.">
+    <meta name="description" content="Bức thư tri ân Ngày Nhà giáo Việt Nam 20/11 gửi Cô giáo dạy Văn.">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,29 +23,18 @@
         }
     </script>
 
-    <!-- Google Fonts chuẩn tiếng Việt không lỗi font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap&subset=vietnamese">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body class="bg-[#faf7f2] text-stone-900 antialiased min-h-screen flex flex-col justify-between selection:bg-stone-300 selection:text-stone-900">
 
-    <!-- YouTube Player ẩn hoàn toàn (phát bài hát Người Gieo Mầm Xanh khi mở thư, không có nút tắt) -->
-    <div style="position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none;">
-        <div id="youtubePlayer"></div>
-    </div>
+    <audio id="bgMusic" src="./assets/nguoi-gieo-mam-xanh.mp3" preload="auto" loop playsinline></audio>
 
-    <!-- Hidden iframe để gửi form email không bị chuyển trang -->
     <iframe name="hidden_email_iframe" id="hidden_email_iframe" style="display:none;"></iframe>
 
-    <!-- ==================== KHUNG TRẢI NGHIỆM CHÍNH ==================== -->
     <main class="w-full max-w-lg mx-auto px-4 py-8 sm:py-12 flex-grow flex flex-col justify-center">
 
-        <!-- ==================== MÀN HÌNH 1: PHONG BÌ THƯ GỬI CÔ ==================== -->
         <div id="envelopeScreen" class="flex flex-col items-center justify-center text-center py-8 transition-all duration-500">
-            
             <p class="text-xs uppercase tracking-widest text-stone-500 font-medium mb-3">
                 Ngày Nhà Giáo Việt Nam 20/11
             </p>
@@ -58,7 +46,6 @@
                 Từ Hà Nội gửi về Cô ở Ninh Hòa
             </p>
 
-            <!-- Phong bì thư nhã nhặn -->
             <div class="envelope-wrapper my-2">
                 <div id="mainInteractiveEnvelope" class="envelope">
                     <div class="envelope-flap"></div>
@@ -66,9 +53,7 @@
                     <div class="envelope-right"></div>
                     <div class="envelope-pocket"></div>
                     
-                    <div class="wax-seal">
-                        20/11
-                    </div>
+                    <div class="wax-seal">20/11</div>
 
                     <div class="envelope-letter flex items-center justify-center">
                         <div class="text-center text-stone-700">
@@ -79,18 +64,13 @@
                 </div>
             </div>
 
-            <!-- Nút hướng dẫn mở thư chân phương, không màu mè -->
             <div class="mt-8 border border-stone-300 bg-white text-stone-800 px-6 py-3 rounded-xl shadow-sm cursor-pointer hover:bg-stone-50 transition" id="tapGuideBtn">
                 <span class="text-sm font-medium">Cô chạm vào phong bì để mở thư nhé</span>
             </div>
         </div>
 
-        <!-- ==================== MÀN HÌNH 2: NỘI DUNG BỨC THƯ TAY ==================== -->
         <div id="letterScreen" class="hidden flex-col items-center transition-all duration-500">
-
-            <!-- Trang giấy thư nhã nhặn -->
             <article id="printableLetterCard" class="w-full bg-[#fcfbf8] border border-[#e5dfd5] rounded-xl p-6 sm:p-9 shadow-sm text-stone-900 my-2">
-                
                 <header class="text-center border-b border-stone-200 pb-5 mb-6">
                     <span class="text-[11px] uppercase tracking-widest text-stone-500 font-semibold block mb-1">
                         Kính gửi Cô giáo dạy Văn của con
@@ -103,9 +83,7 @@
                     </span>
                 </header>
 
-                <!-- NỘI DUNG THƯ TỰ NHIÊN, CHÂN THÀNH -->
                 <div class="space-y-4 font-sans text-base leading-relaxed text-stone-800 text-justify">
-                    
                     <p class="font-heading text-lg font-bold text-stone-900" style="text-indent: 0;">
                         Cô kính yêu của con,
                     </p>
@@ -133,10 +111,8 @@
                     <p class="font-medium text-stone-900">
                         Con kính chúc Cô thật nhiều sức khỏe, luôn an yên, hạnh phúc và mãi xinh đẹp trong nụ cười của Cô.
                     </p>
-
                 </div>
 
-                <!-- Chữ ký -->
                 <footer class="mt-8 pt-5 border-t border-stone-200 flex flex-col items-end text-right">
                     <span class="text-xs text-stone-500 block mb-1">Học trò của Cô,</span>
                     <span class="font-heading text-xl text-stone-900 font-bold">
@@ -147,6 +123,7 @@
                     </span>
                 </footer>
             </article>
+
             <div id="saveImageSection" class="w-full mt-5 text-center">
                 <button id="saveImageBtn" type="button" class="w-full py-3 px-6 rounded-xl border border-stone-300 bg-[#fcfbf8] hover:bg-stone-100 text-stone-700 text-sm font-medium shadow-sm transition active:scale-98 inline-flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -156,70 +133,53 @@
                 </button>
             </div>
 
-            <!-- ==================== NÚT: CÔ ĐÃ ĐỌC XONG THÌ BẤM VÀO ĐÂY ==================== -->
-            <div id="readFinishSection" class="w-full my-6 text-center">
+            <div id="readFinishSection" class="w-full mt-3 mb-6 text-center">
                 <button id="finishReadingBtn" class="w-full py-3.5 px-6 rounded-xl border border-stone-400 bg-white hover:bg-stone-50 text-stone-900 text-sm sm:text-base font-semibold shadow-sm transition active:scale-98">
                     Cô đã đọc xong thì bấm vào đây
                 </button>
             </div>
 
-            <!-- ==================== KHU VỰC HIỆN RA SAU KHI BẤM: BÔNG HOA & Ô NHẮN NHỦ ==================== -->
             <div id="teacherReplySection" class="hidden w-full my-4 flex-col items-center text-center transition-all duration-700">
-                
-                <!-- Bông hoa tao nhã vẽ nét thanh mảnh -->
                 <div class="my-4 flex justify-center">
                     <svg width="64" height="64" viewBox="0 0 100 100" fill="none" stroke="#991b1b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
-                        <!-- Cành hoa hồng vẽ nét trang nhã -->
                         <path d="M50,85 C50,65 48,50 50,38" />
                         <path d="M50,60 C42,55 35,58 32,54 C35,48 45,52 50,56" />
                         <path d="M50,48 C58,43 65,46 68,42 C65,36 55,40 50,44" />
-                        <!-- Cánh hoa -->
                         <path d="M50,38 C42,38 38,30 42,24 C46,18 54,18 58,24 C62,30 58,38 50,38 Z" fill="#fff1f2" />
                         <path d="M46,28 C48,22 52,22 54,28" />
                         <path d="M44,22 C48,15 52,15 56,22" />
                     </svg>
                 </div>
 
-                <!-- Dòng nhắn nhủ nhẹ nhàng -->
                 <h3 class="text-base sm:text-lg font-heading font-semibold text-stone-900 mb-4">
                     Cô có muốn nhắn nhủ gì con hông?
                 </h3>
 
-                <!-- Form gửi tự động vào email nhaxlinh2202@gmail.com -->
                 <form id="teacherReplyForm" action="https://formsubmit.co/nhaxlinh2202@gmail.com" method="POST" target="hidden_email_iframe" class="w-full space-y-3.5">
-                    
-                    <!-- Cấu hình FormSubmit ngầm -->
                     <input type="hidden" name="_subject" value="Lời nhắn 20/11 từ Cô giáo dạy Văn ở Ninh Hòa gửi cho con">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="Nguoi_gui" value="Cô giáo dạy Văn (Ninh Hòa)">
 
-                    <!-- Ô nhập của Cô -->
                     <textarea id="teacherMessageInput" name="Loi_nhan_cua_Co" rows="5" required placeholder="Cô viết lời nhắn nhủ, dặn dò ở đây nhé..." class="w-full p-4 rounded-xl border border-stone-300 focus:outline-none focus:border-stone-600 bg-white text-stone-800 text-sm leading-relaxed shadow-sm font-sans"></textarea>
 
-                    <!-- Nút Gửi cho con -->
                     <button type="submit" id="submitReplyBtn" class="w-full py-3 px-6 rounded-xl bg-stone-900 hover:bg-black text-white text-sm font-medium shadow-sm transition active:scale-98">
                         Gửi cho con
                     </button>
                 </form>
 
-                <!-- Thông báo sau khi gửi thành công -->
                 <div id="replySuccessNotice" class="hidden mt-4 p-4 rounded-xl bg-[#f4f2ec] border border-stone-300 text-stone-800 text-sm text-center leading-relaxed">
                     Con cảm ơn Cô. Lời nhắn của Cô đã được gửi đến con rồi ạ.
                 </div>
-
             </div>
-
         </div>
 
     </main>
 
-    <!-- Footer giản dị -->
     <footer class="py-6 text-center text-xs text-stone-400">
         Ngày Nhà Giáo Việt Nam 20/11
     </footer>
 
-    <!-- Scripts -->
     <script src="sound.js"></script>
     <script src="app.js"></script>
 </body>

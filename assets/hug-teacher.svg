@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="100%" height="100%" style="border-radius: 16px; background: linear-gradient(135deg, #fef9ed 0%, #fdeece 50%, #fce7b2 100%); font-family: 'Be Vietnam Pro', 'Playfair Display', serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="warmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8eb"/>
+      <stop offset="45%" stop-color="#fef0d2"/>
+      <stop offset="100%" stop-color="#f9d799"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#fed7aa" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fdba74" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="aoDaiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="60%" stop-color="#db2777"/>
+      <stop offset="100%" stop-color="#9d174d"/>
+    </linearGradient>
+    <linearGradient id="studentCoat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="70%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#78350f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="700" height="500" fill="url(#warmBg)"/>
+  <circle cx="350" cy="220" r="230" fill="url(#sunGlow)"/>
+
+  <!-- Soft bokeh circles -->
+  <circle cx="120" cy="110" r="45" fill="#fef08a" opacity="0.35"/>
+  <circle cx="580" cy="90" r="55" fill="#fed7aa" opacity="0.4"/>
+  <circle cx="180" cy="380" r="60" fill="#fecdd3" opacity="0.3"/>
+  <circle cx="540" cy="390" r="70" fill="#fef08a" opacity="0.3"/>
+
+  <!-- Autumn tree branches silhouette -->
+  <path d="M560,-10 Q610,60 670,80 Q640,110 710,130 M600,50 Q630,90 680,105" stroke="#92400e" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.35"/>
+
+  <!-- Drifting Autumn Leaves -->
+  <path d="M110,170 Q130,150 150,170 Q130,190 110,170 Z" fill="url(#leafGrad1)" opacity="0.75" transform="rotate(25 130 170)"/>
+  <path d="M570,160 Q590,140 610,160 Q590,180 570,160 Z" fill="url(#leafGrad2)" opacity="0.75" transform="rotate(-35 590 160)"/>
+  <path d="M190,90 Q205,75 220,90 Q205,105 190,90 Z" fill="url(#leafGrad1)" opacity="0.6" transform="rotate(40 205 90)"/>
+  <path d="M490,95 Q505,80 520,95 Q505,110 490,95 Z" fill="url(#leafGrad2)" opacity="0.6" transform="rotate(-20 505 95)"/>
+  <path d="M230,410 Q245,395 260,410 Q245,425 230,410 Z" fill="url(#leafGrad1)" opacity="0.5" transform="rotate(15 245 410)"/>
+
+  <!-- Floating Hearts for love and gratitude -->
+  <g fill="#ec4899" opacity="0.85" filter="url(#softGlow)">
+    <path d="M340,100 C340,88 355,88 355,100 C355,112 340,122 340,126 C340,122 325,112 325,100 C325,88 340,88 340,100 Z" transform="scale(1.2) translate(-60, -10)"/>
+    <path d="M260,140 C260,130 272,130 272,140 C272,150 260,158 260,162 C260,158 248,150 248,140 C248,130 260,130 260,140 Z"/>
+    <path d="M430,135 C430,125 442,125 442,135 C442,145 430,153 430,157 C430,153 418,145 418,135 C418,125 430,125 430,135 Z"/>
+  </g>
+
+  <!-- ==================== MAIN CHARACTERS: TEACHER & FEMALE STUDENT EMBRACE ==================== -->
+  <g id="embraceGroup" transform="translate(10, 15)">
+    <!-- Aura behind characters -->
+    <ellipse cx="340" cy="280" rx="190" ry="170" fill="#ffffff" opacity="0.65" filter="url(#softGlow)"/>
+
+    <!-- Teacher Body / Ao Dai (Facing slightly right, smiling with gentle closed eyes) -->
+    <g id="teacher">
+      <!-- Lower Ao Dai Flap -->
+      <path d="M250,330 Q270,450 280,480 L350,480 Q360,430 350,330 Z" fill="url(#aoDaiGrad)" opacity="0.95"/>
+      <path d="M230,370 Q250,450 260,480 L310,480 Q300,430 290,370 Z" fill="#ffffff" opacity="0.7"/>
+
+      <!-- Teacher Torso -->
+      <path d="M265,220 C240,260 250,340 260,370 C280,380 340,375 350,350 C360,320 365,260 345,220 Z" fill="url(#aoDaiGrad)"/>
+      <path d="M288,205 C295,198 315,198 322,205 L320,222 C310,225 300,225 290,222 Z" fill="#be185d"/>
+
+      <!-- Teacher Head & Hair -->
+      <path d="M260,175 C250,130 310,105 340,125 C360,140 360,190 350,215 C330,225 275,220 260,175 Z" fill="#2d1e18"/>
+      <ellipse cx="270" cy="180" rx="20" ry="32" fill="#2d1e18"/>
+
+      <!-- Teacher Face -->
+      <path d="M280,165 C280,145 320,145 328,165 C332,185 325,208 305,212 C285,208 278,185 280,165 Z" fill="#fde6d2"/>
+      
+      <!-- Gentle Teacher Smile & Eyes -->
+      <path d="M286,172 Q293,165 300,172" stroke="#6c2e14" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M308,172 Q315,165 322,172" stroke="#6c2e14" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="288" cy="182" rx="7" ry="4" fill="#fb7185" opacity="0.6"/>
+      <ellipse cx="320" cy="182" rx="7" ry="4" fill="#fb7185" opacity="0.6"/>
+      <path d="M298,188 Q304,196 312,188" stroke="#be185d" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+      <!-- Front Hair Tendrils -->
+      <path d="M280,148 Q272,175 280,195 Q285,165 295,152 Z" fill="#1c120c"/>
+      <path d="M322,148 Q332,175 326,200 Q320,170 310,152 Z" fill="#1c120c"/>
+
+      <!-- Teacher Arm wrapping gently around student -->
+      <path d="M335,245 C355,255 385,265 400,285 C410,300 395,315 375,310 C350,300 330,280 320,265 Z" fill="url(#aoDaiGrad)"/>
+      <path d="M390,285 C405,290 412,305 405,312 C395,318 385,310 380,300 Z" fill="#fde6d2"/>
+    </g>
+
+    <!-- Female Student (Cô học trò Bách Khoa cũ năm nào với mái tóc dài dịu dàng) -->
+    <g id="femaleStudent">
+      <!-- Long flowing hair behind back -->
+      <path d="M395,150 C430,170 460,240 455,360 C445,400 420,440 405,460 C420,410 440,320 425,220 C420,180 405,160 395,150 Z" fill="#1c1917"/>
+
+      <!-- Torso / Cozy Blue Winter Coat -->
+      <path d="M330,240 C350,225 405,230 420,270 C435,320 435,410 425,480 L360,480 C360,430 355,360 340,310 Z" fill="url(#studentCoat)"/>
+      
+      <!-- Student Neck & Warm Winter Scarf (Khăn ấm mùa đông Hà Nội) -->
+      <path d="M360,215 C370,210 390,210 400,215 L405,245 C390,255 370,255 355,245 Z" fill="#fde6d2"/>
+      <path d="M352,225 C370,218 410,220 418,235 C420,250 400,260 380,260 C360,260 348,245 352,225 Z" fill="#f59e0b"/>
+      <path d="M380,255 L375,320 L395,320 L398,255 Z" fill="#d97706"/>
+
+      <!-- Student Head (resting gently on teacher's shoulder with deep emotion) -->
+      <path d="M355,160 C345,130 395,115 425,135 C445,150 445,190 430,215 C410,230 365,215 355,160 Z" fill="#1c1917"/>
+      <!-- Soft female facial profile -->
+      <path d="M355,165 C355,150 390,148 400,165 C405,180 398,205 382,210 C365,208 355,185 355,165 Z" fill="#fcd9bd"/>
+      <!-- Closed eye with peaceful, grateful eyelashes -->
+      <path d="M370,175 Q378,168 386,175" stroke="#475569" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Sweet feminine eyelashes -->
+      <path d="M372,172 L370,168 M384,172 L386,168" stroke="#334155" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Glint of grateful happy tear -->
+      <circle cx="371" cy="181" r="2" fill="#38bdf8" opacity="0.9"/>
+      <!-- Soft blush on cheek -->
+      <ellipse cx="382" cy="182" rx="7" ry="4" fill="#fb7185" opacity="0.6"/>
+      <!-- Peaceful smile -->
+      <path d="M376,190 Q382,196 388,190" stroke="#475569" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+      <!-- Student Hair Details (Feminine soft bangs and lovely hair clip 🌸) -->
+      <path d="M358,155 C352,130 385,120 418,125 C432,135 435,165 428,185 C420,155 390,140 358,155 Z" fill="#292524"/>
+      <circle cx="410" cy="148" r="5" fill="#f43f5e"/>
+      <circle cx="410" cy="148" r="2" fill="#fef08a"/>
+
+      <!-- Student Arms embracing teacher affectionately -->
+      <path d="M375,260 C350,265 295,270 270,290 C258,300 262,315 278,318 C305,315 350,295 380,285 Z" fill="url(#studentCoat)"/>
+      <path d="M265,290 C255,298 256,310 268,312 C275,310 282,305 285,298 Z" fill="#fcd9bd"/>
+    </g>
+  </g>
+
+  <!-- ==================== BANNER & CALLIGRAPHY CAPTION ==================== -->
+  <g transform="translate(350, 435)" filter="url(#cardShadow)">
+    <path d="M-280,0 L280,0 C290,0 298,8 298,18 L298,36 C298,46 290,54 280,54 L-280,54 C-290,54 -298,46 -298,36 L-298,18 C-298,8 -290,0 -280,0 Z" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" opacity="0.96"/>
+    
+    <text x="0" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="#991b1b" letter-spacing="0.5">
+      “Cảm ơn Cô vì đã góp phần tạo nên con của ngày hôm nay”
+    </text>
+    <text x="0" y="44" text-anchor="middle" font-size="12" font-weight="500" fill="#78350f" font-style="italic">
+      Từ cô học trò Bách Khoa gửi trọn yêu thương về Cô ở Ninh Hòa 🌸 20/11
+    </text>
+  </g>
+
+  <!-- Little green sprout icon 🌱 -->
+  <g transform="translate(620, 420)">
+    <circle cx="15" cy="15" r="22" fill="#ffffff" stroke="#22c55e" stroke-width="2" filter="url(#cardShadow)"/>
+    <text x="15" y="22" text-anchor="middle" font-size="20">🌱</text>
+  </g>
+</svg>
